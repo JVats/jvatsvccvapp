@@ -1,0 +1,27 @@
+/*font-family: 'Fjalla One', sans-serif;*/
+@import "bootstrap-sprockets";
+@import "bootstrap";
+/*Header*/
+#header {
+  p {
+    color: #666666;
+    font-family: 'Oswald', sans-serif;
+    font-size: x-large;
+    margin: 30px;
+  }
+}
+/*Footer*/
+#footer {
+  ul {
+    list-style-type: none;
+    li {
+      float: left;
+      padding-left: 15px;
+      p {
+        color: #666666;
+        font-family: 'Oswald', sans-serif;
+        font-size: xx-large;
+      }
+    }
+  }
+}
