@@ -26,6 +26,7 @@ if (!('webkitSpeechRecognition' in window)) {
             if (event.results[i].isFinal) {
                 finalTranscript += event.results[i][0].transcript;
                 checkSaid(finalTranscript);
+                recognition.start();
             } else {
                 interimTranscript += event.results[i][0].transcript;
             }
@@ -38,7 +39,6 @@ if (!('webkitSpeechRecognition' in window)) {
 
     recognition.onend = function() {
         console.log("Recognition ended and restarted!");
-        recognition.start();
     }
 }
 
