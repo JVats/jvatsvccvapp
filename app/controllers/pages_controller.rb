@@ -20,6 +20,6 @@ class PagesController < ApplicationController
   def computer
   end
 
-  def refresher
+  def help
   end
 end

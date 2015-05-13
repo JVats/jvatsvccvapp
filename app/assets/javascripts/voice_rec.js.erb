@@ -11,6 +11,8 @@ var dictionary = {
     "additional info" : "additional",
     "personal info" : "personal",
     "computer skills" : "computer",
+    "help" : "help",
+    "source code" : "git",
     "home" : "home"
 };
 
@@ -90,6 +92,8 @@ function checkSaid(sentence) {
             sayPageName("Home page");
         } else if (saidWord == "song"){
             beatBoxSynth();
+        } else if (saidWord == "git"){
+            window.open("https://github.com/");
         } else {
             var constring = window.location.origin + "/" + saidWord;
             window.location.replace(constring);
