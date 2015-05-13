@@ -1,6 +1,10 @@
+//Last sellected activity
 var last;
+//Beatbox string
+var beatbox = "Turuleti taga kastid kurke täis kurgimüüja laulab Ostke kurke häid Kurgid sulle, raha mulle sulle mulle mulle sulle sulle mulle Kallis oed kodu armas Eestimaa sest et igas linnas kurke müüa saab";
 //Dictionary containing said words equalent to specific views
 var dictionary = {
+    "sing a song" : "song",
     "education" : "education",
     "work experience" : "work",
     "language skills" : "language",
@@ -37,15 +41,12 @@ if (!('webkitSpeechRecognition' in window)) {
 
         // Assemble the transcript from the array of results
         for (var i = event.resultIndex; i < event.results.length; ++i) {
-            if (event.results[i].isFinal) {
-                finalTranscript = event.results[i][0].transcript;
-            } else {
-                interimTranscript = event.results[i][0].transcript;
-                checkSaid(interimTranscript);
-            }
+            interimTranscript = event.results[i][0].transcript;
+            checkSaid(interimTranscript);
         }
-        //test();
         consoleLog(interimTranscript, finalTranscript, event.resultIndex, isRecognizing)
+        var elem = document.getElementById("input-field");
+        elem.value = interimTranscript;
     };
 
     recognition.onend = function() {
@@ -69,27 +70,44 @@ function checkWord(word) {
     });
     return contains;
 }
+function findWordKey(word) {
+    var retKey;
+    $.each(dictionary, function(key, value) {
+        if (word == value) {
+            retKey = key;
+        }
+    });
+    return retKey;
+}
 
 //Executes actions based on words said
 function checkSaid(sentence) {
     var saidWord = checkWord(sentence)
     if (saidWord && saidWord != last) {
         last = saidWord;
-        if (saidWord != "home")
-        {
+        if (saidWord == "home") {
+            window.location.replace(window.location.origin);
+            sayPageName("Home page");
+        } else if (saidWord == "song"){
+            beatBoxSynth();
+        } else {
             var constring = window.location.origin + "/" + saidWord;
             window.location.replace(constring);
-        } else {
-            window.location.replace(window.location.origin);
+            sayPageName(findWordKey(saidWord));
         }
 
     }
 }
+function sayPageName(name) {
+    var utterance = new SpeechSynthesisUtterance();
+    utterance.text = name;
+    utterance.lang = 'en-US';
+    window.speechSynthesis.speak(utterance);
+}
 
-function test() {
-    var string = "/education";
-    var string2 = window.location.host + string;
-    console.log(window.location);
-    console.log(string2);
-    //window.location.replace(window.location.host + string);
+function beatBoxSynth() {
+    var utterance = new SpeechSynthesisUtterance();
+    utterance.text = beatbox;
+    utterance.lang = 'de-DE';
+    window.speechSynthesis.speak(utterance);
 }
