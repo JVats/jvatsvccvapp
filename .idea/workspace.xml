@@ -63,8 +63,8 @@
       <file leaf-file-name="voice_rec.js.erb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/voice_rec.js.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.34615386" vertical-offset="1208" max-vertical-offset="1615">
-              <caret line="79" column="8" selection-start-line="79" selection-start-column="8" selection-end-line="79" selection-end-column="8" />
+            <state vertical-scroll-proportion="0.3923077" vertical-offset="0" max-vertical-offset="1615">
+              <caret line="9" column="14" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -909,8 +909,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/voice_rec.js.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.34615386" vertical-offset="1208" max-vertical-offset="1615">
-          <caret line="79" column="8" selection-start-line="79" selection-start-column="8" selection-end-line="79" selection-end-column="8" />
+        <state vertical-scroll-proportion="0.3923077" vertical-offset="0" max-vertical-offset="1615">
+          <caret line="9" column="14" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
           <folding />
         </state>
       </provider>
