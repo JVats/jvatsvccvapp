@@ -1,0 +1,90 @@
+var last;
+//Dictionary containing said words equalent to specific views
+var dictionary = {
+    "education" : "education",
+    "work experience" : "work",
+    "language skills" : "language",
+    "additional info" : "additional",
+    "personal info" : "personal",
+    "computer skills" : "computer",
+    "home" : "home"
+};
+
+if (!('webkitSpeechRecognition' in window)) {
+    alert("Sorry, your Browser does not support the Speech API");
+} else {
+    var recognition;
+    finalTranscript = '';
+    isRecognizing = false;
+
+    recognition = new webkitSpeechRecognition();
+
+    recognition.continuous = true;         // keep processing input until stopped
+    recognition.interimResults = true;     // show interim results
+    recognition.lang = 'en-GB';
+
+    recognition.onstart = function() {
+        console.log("Recoginition started!");
+    };
+
+    if (!isRecognizing) {
+        recognition.start();
+        isRecognizing = true;
+    }
+
+    recognition.onresult = function(event) {
+        var interimTranscript = '';
+
+        // Assemble the transcript from the array of results
+        for (var i = event.resultIndex; i < event.results.length; ++i) {
+            if (event.results[i].isFinal) {
+                finalTranscript = event.results[i][0].transcript;
+            } else {
+                interimTranscript = event.results[i][0].transcript;
+                checkSaid(interimTranscript);
+            }
+        }
+        test();
+        consoleLog(interimTranscript, finalTranscript, event.resultIndex, isRecognizing)
+    };
+
+    recognition.onend = function() {
+        console.log("Recognition ended!");
+        isRecognizing = false;
+    }
+}
+
+function consoleLog(interm, final, index,state) {
+    console.log("Interm: " + interm);
+    console.log("Final: " + final);
+    console.log("ResultIndex: " + index);
+    console.log("State: " + state);
+}
+
+function checkWord(word) {
+    var contains;
+    $.each(dictionary, function(key) {
+        if (word.indexOf(key) > -1)
+            contains = dictionary[key];
+    });
+    return contains;
+}
+
+//Executes actions based on words said
+function checkSaid(sentence) {
+    var saidWord = checkWord(sentence)
+    if (saidWord && saidWord != last) {
+        last = saidWord;
+        console.log(sentence);
+        var constring = window.location.origin + "/" + saidWord;
+        window.location.replace(constring);
+    }
+}
+
+function test() {
+    var string = "/education";
+    var string2 = window.location.host + string;
+    console.log(window.location);
+    console.log(string2);
+    //window.location.replace(window.location.host + string);
+}
