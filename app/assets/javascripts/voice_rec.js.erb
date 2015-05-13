@@ -7,7 +7,7 @@ var dictionary = {
     "additional info" : "additional",
     "personal info" : "personal",
     "computer skills" : "computer",
-    "home" : ""
+    "home" : "home"
 };
 
 if (!('webkitSpeechRecognition' in window)) {
@@ -44,7 +44,7 @@ if (!('webkitSpeechRecognition' in window)) {
                 checkSaid(interimTranscript);
             }
         }
-        test();
+        //test();
         consoleLog(interimTranscript, finalTranscript, event.resultIndex, isRecognizing)
     };
 
@@ -75,9 +75,14 @@ function checkSaid(sentence) {
     var saidWord = checkWord(sentence)
     if (saidWord && saidWord != last) {
         last = saidWord;
-        console.log(sentence);
-        var constring = window.location.origin + "/" + saidWord;
-        window.location.replace(constring);
+        if (saidWord != "home")
+        {
+            var constring = window.location.origin + "/" + saidWord;
+            window.location.replace(constring);
+        } else {
+            window.location.replace(window.location.origin);
+        }
+
     }
 }
 
