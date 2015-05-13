@@ -4,6 +4,8 @@ var last;
 var beatbox = "Turuleti taga kastid kurke täis kurgimüüja laulab Ostke kurke häid Kurgid sulle, raha mulle sulle mulle mulle sulle sulle mulle Kallis oed kodu armas Eestimaa sest et igas linnas kurke müüa saab";
 //Dictionary containing said words equalent to specific views
 var dictionary = {
+    "thank you" : "thx",
+    "voice" : "voice",
     "sing a song" : "song",
     "education" : "education",
     "work experience" : "work",
@@ -93,7 +95,11 @@ function checkSaid(sentence) {
         } else if (saidWord == "song"){
             beatBoxSynth();
         } else if (saidWord == "git"){
-            window.open("https://github.com/");
+            window.open("https://github.com/JVats/jvatsvccvapp");
+        } else if (saidWord == "voice"){
+            sayPageName("Voice comes out of your mouth try it!");
+        } else if (saidWord == "thx"){
+            sayPageName("You're welcome");
         } else {
             var constring = window.location.origin + "/" + saidWord;
             window.location.replace(constring);
